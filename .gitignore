@@ -1,0 +1,40 @@
+# Archivos de compilación
+target/
+build/
+
+# Archivos de dependencias
+*.jar
+*.war
+*.ear
+
+# Archivos de configuración del IDE
+*.iml
+.idea/
+.vscode/
+*.class
+
+# Archivos de logs
+*.log
+
+# Archivos temporales del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de Maven
+.mvn/
+.settings/
+.classpath
+.project
+
+# Archivos de Gradle
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+
+# Archivos de Spring Boot
+application-*.yml
+application-*.properties
+
+# Archivos de pruebas
+test-output/
+surefire-reports/
