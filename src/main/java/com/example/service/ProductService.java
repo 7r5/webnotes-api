@@ -21,7 +21,7 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public List<Product> getFilteredProducts(String category, String size, String color) {
+    public List<Product> getFilteredProducts(String category, String size) {
         if (category != null && size != null) {
             return productRepository.findByCategoryAndSize(category, size);
         }

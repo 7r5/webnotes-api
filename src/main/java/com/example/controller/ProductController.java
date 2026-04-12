@@ -38,7 +38,7 @@ public class ProductController {
             return ResponseEntity.ok(productService.getAllProducts());
         }
         
-        return ResponseEntity.ok(productService.filter(category, size));
+        return ResponseEntity.ok(productService.getFilteredProducts(category, size));
     }
 
     @GetMapping("/getCategories")
