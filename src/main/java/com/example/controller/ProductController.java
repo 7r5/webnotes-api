@@ -25,4 +25,16 @@ public class ProductController {
     public ResponseEntity<Product> create(@RequestBody Product product) {
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.saveProduct(product));
     }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<Product>> getFiltered(
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String size,
+            @RequestParam(required = false) String color) {
+        
+        // Llamamos al servicio pasando los criterios
+        List<Product> filtered = productService.getFilteredProducts(category, size, color);
+        return ResponseEntity.ok(filtered);
+    }
+
 }
