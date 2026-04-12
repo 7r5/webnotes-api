@@ -2,11 +2,14 @@ package com.example.repository;
 
 import com.example.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
 import java.util.List;
+
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
     // Filtrar por categoría (Exacto)
-    List<Product> findByCategory(String category);
+    List<Product> findByCategoryIgnoreCase(String category);
 
     // Filtrar por talla
     List<Product> findBySize(String size);
@@ -20,4 +23,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     // Buscar por nombre (para la barra de búsqueda del e-commerce)
     List<Product> findByNameContainingIgnoreCase(String name);
+
+    @Query("SELECT DISTINCT p.category FROM Product p")
+    List<String> findAllCategories();
+
+    @Query("SELECT DISTINCT p.size FROM Product p")
+    List<String> findAllSizes();
 }

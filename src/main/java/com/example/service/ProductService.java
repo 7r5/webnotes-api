@@ -22,15 +22,23 @@ public class ProductService {
     }
 
     public List<Product> getFilteredProducts(String category, String size, String color) {
-    if (category != null && size != null) {
-        return productRepository.findByCategoryAndSize(category, size);
+        if (category != null && size != null) {
+            return productRepository.findByCategoryAndSize(category, size);
+        }
+            if (category != null) {
+                return productRepository.findByCategoryIgnoreCase(category);
+            }
+            if (size != null) {
+                return productRepository.findBySize(size);
+            }
+        return productRepository.findAll();
     }
-    if (category != null) {
-        return productRepository.findByCategory(category);
+
+    public List<String> findAllCategories() {
+        return productRepository.findAllCategories();
     }
-    if (size != null) {
-        return productRepository.findBySize(size);
+
+    public List<String> findAllSizes() {
+        return productRepository.findAllSizes();
     }
-    return productRepository.findAll();
-}
 }

@@ -38,4 +38,14 @@ public class ProductController {
         return ResponseEntity.ok(filtered);
     }
 
+    @GetMapping("/getCategories")
+    public ResponseEntity<List<String>> getCategories() {
+        return ResponseEntity.ok(productService.findAllCategories());
+    }
+    
+    @GetMapping("/getSizes")
+    public ResponseEntity<List<String>> getSizes() {
+        return ResponseEntity.ok(productService.findAllSizes());
+    }
+
 }
