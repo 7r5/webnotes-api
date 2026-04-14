@@ -13,14 +13,16 @@ public class Users {
     private Long id;
     private String name;
     private String email;
+    private java.time.LocalDate birthdate;
 
     // Constructores
     public Users() {
     }
 
-    public Users(String name, String email) {
+    public Users(String name, String email, java.time.LocalDate birthdate) {
         this.name = name;
         this.email = email;
+        this.birthdate = birthdate;
     }
 
     // Getters y Setters
@@ -46,5 +48,13 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public java.time.LocalDate getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(java.time.LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 }
