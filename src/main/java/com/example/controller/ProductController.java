@@ -51,4 +51,9 @@ public class ProductController {
         return ResponseEntity.ok(productService.findAllSizes());
     }
 
+    @GetMapping("/getSizesFromCategory")
+    public ResponseEntity<List<String>> getSizesFromCategory(@RequestParam String category) {
+        return ResponseEntity.ok(productService.findSizesFromProductCategory(category));
+    }
+
 }

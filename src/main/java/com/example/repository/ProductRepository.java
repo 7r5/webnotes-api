@@ -3,6 +3,7 @@ package com.example.repository;
 import com.example.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -29,4 +30,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("SELECT DISTINCT p.size FROM Product p")
     List<String> findAllSizes();
+
+    // Agrega un metodo que regrese las tallas disponibles para una categoria dada
+    @Query("SELECT DISTINCT p.size FROM Product p WHERE p.category = :category")
+    List<String> findSizesFromProductCategory(@Param("category") String category);
+
 }

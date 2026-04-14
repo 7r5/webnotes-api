@@ -17,6 +17,7 @@ public class Product {
     private String description;
     private String category;    // Ej: "Urbano", "Formal"
     private Double price;
+    private Double priceWithDiscount; // Para mostrar el precio con descuento en el frontend (React)
     private String size;        // Ej: "S", "M", "L", "XL"
     private String color;
     private Integer stock;
@@ -63,6 +64,12 @@ public class Product {
     }
     public void setPrice(Double price) {
         this.price = price;
+    }
+    public Double getPriceWithDiscount() {
+        return priceWithDiscount;
+    }
+    public void setPriceWithDiscount(Double priceWithDiscount) {
+        this.priceWithDiscount = priceWithDiscount;
     }
 
     public String getSize() {

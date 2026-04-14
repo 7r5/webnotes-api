@@ -35,10 +35,14 @@ public class ProductService {
     }
 
     public List<String> findAllCategories() {
-        return productRepository.findAllCategories();
+        return productRepository.findAllCategories(); 
     }
 
     public List<String> findAllSizes() {
         return productRepository.findAllSizes();
+    }
+
+    public List<String> findSizesFromProductCategory(String category) {
+        return productRepository.findSizesFromProductCategory(category);
     }
 }
