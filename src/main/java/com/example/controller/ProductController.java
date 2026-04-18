@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.model.Product;
 import com.example.service.ProductService;
+import com.example.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping
     public ResponseEntity<List<Product>> getAll() {
@@ -54,6 +58,18 @@ public class ProductController {
     @GetMapping("/getSizesFromCategory")
     public ResponseEntity<List<String>> getSizesFromCategory(@RequestParam String category) {
         return ResponseEntity.ok(productService.findSizesFromProductCategory(category));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductDetails(@PathVariable Long id) {
+        Product product = productService.getAllProducts().stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+        if (product == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(product);
     }
 
 }

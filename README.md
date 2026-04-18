@@ -6,7 +6,7 @@ REST API backend para WebNotes construida con Spring Boot 3.x, Java 17 y Postgre
 ## Quick Commands
 
 ```powershell
-mvn build
+mvn compile
 ```
 
 ```powershell
