@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.model.Comment;
+import com.example.model.CommentDTO;
 import com.example.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +23,8 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<Comment> create(@RequestBody Comment comment) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(commentService.saveComment(comment));
+    public ResponseEntity<Comment> create(@RequestBody CommentDTO commentDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(commentService.saveCommentFromDTO(commentDTO));
     }
 
     @GetMapping("/product/{productId}")
