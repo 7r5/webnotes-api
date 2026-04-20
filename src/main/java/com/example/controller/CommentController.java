@@ -1,20 +1,30 @@
 package com.example.controller;
 
-import com.example.model.Comment;
-import com.example.model.CommentDTO;
-import com.example.service.CommentService;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.model.Comment;
+import com.example.model.CommentDTO;
+import com.example.service.CommentService;
+
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.Parameter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -54,4 +64,15 @@ public class CommentController {
     public ResponseEntity<List<Comment>> getCommentsByProduct(@Parameter(description = "ID del producto") @PathVariable Long productId) {
         return ResponseEntity.ok(commentService.getCommentsByProductAndType(productId, "Product"));
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Actualización total", description = "Permite editar CUALQUIER campo del comentario, incluyendo relaciones.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Comentario actualizado"),
+        @ApiResponse(responseCode = "404", description = "Comentario no encontrado")
+    })
+    public ResponseEntity<Comment> updateComment(@PathVariable Long id, @RequestBody CommentDTO dto) {
+        return ResponseEntity.ok(commentService.updateCommentFull(id, dto));
+    }
+
 }
